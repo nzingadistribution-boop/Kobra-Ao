@@ -293,3 +293,124 @@
 
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kobra AO | Sistema Definitivo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root { --p: #163172; --a: #1e61f0; --bg: #f8fafc; --t: #1e293b; --w: #fff; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+        body { background: var(--bg); display:flex; justify-content:center; align-items:center; min-height:100vh; padding:20px; }
+        .card { width:100%; max-width:400px; background:var(--w); padding:40px; border-radius:24px; box-shadow:0 10px 25px rgba(0,0,0,0.05); border:1px solid #e2e8f0; }
+        .logo { text-align:center; margin-bottom:30px; }
+        .icon { width:60px; height:60px; background:linear-gradient(135deg, var(--p), var(--a)); border-radius:15px; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; color:white; font-size:25px; }
+        .form-group { margin-bottom:15px; }
+        label { font-size:12px; font-weight:700; display:block; margin-bottom:5px; color:var(--t); }
+        .input-box { position:relative; }
+        .input-box i { position:absolute; left:15px; top:15px; color:#94a3b8; }
+        input { width:100%; padding:12px 12px 12px 40px; border:1px solid #e2e8f0; border-radius:12px; outline:none; transition:0.3s; }
+        input:focus { border-color:var(--a); box-shadow:0 0 0 3px rgba(30,97,240,0.1); }
+        .btn { width:100%; padding:14px; background:var(--p); color:white; border:none; border-radius:12px; font-weight:600; cursor:pointer; margin-top:10px; }
+        .btn-alt { background:none; color:var(--a); border:none; font-size:14px; cursor:pointer; margin-top:20px; width:100%; }
+        .dashboard { display:none; text-align:center; }
+        .balance-card { background:var(--p); color:white; padding:20px; border-radius:15px; margin:20px 0; }
+    </style>
+</head>
+<body>
+
+<div class="card" id="app-container">
+    <!-- TELA DE LOGIN/REGISTRO -->
+    <div id="auth-screen">
+        <div class="logo">
+            <div class="icon"><i class="fa-solid fa-wallet"></i></div>
+            <h1 id="title">Kobra AO</h1>
+            <p id="subtitle">Aceda à sua conta financeira</p>
+        </div>
+
+        <div id="form-area">
+            <div class="form-group" id="name-group" style="display:none;">
+                <label>NOME COMPLETO</label>
+                <div class="input-box"><i class="fa-solid fa-user"></i><input type="text" id="name" placeholder="Ex: João Manuel"></div>
+            </div>
+            <div class="form-group">
+                <label>E-MAIL OU TELEFONE</label>
+                <div class="input-box"><i class="fa-solid fa-envelope"></i><input type="text" id="user" placeholder="exemplo@kobra.ao"></div>
+            </div>
+            <div class="form-group">
+                <label>PALAVRA-PASSE</label>
+                <div class="input-box"><i class="fa-solid fa-lock"></i><input type="password" id="pass" placeholder="••••••••"></div>
+            </div>
+            <button class="btn" onclick="handleAuth()" id="main-btn">Entrar</button>
+            <button class="btn-alt" onclick="toggleMode()" id="alt-btn">Não tem conta? Registe-se</button>
+        </div>
+    </div>
+
+    <!-- TELA DE DASHBOARD (SISTEMA APÓS LOGIN) -->
+    <div id="dashboard-screen" class="dashboard">
+        <div class="logo">
+            <h1>Olá, <span id="user-display">Usuário</span>!</h1>
+            <p>Bem-vindo ao seu painel Kobra</p>
+        </div>
+        <div class="balance-card">
+            <small>Saldo Disponível</small>
+            <h2 id="user-balance">0,00 Kz</h2>
+        </div>
+        <button class="btn" style="background:#ef4444;" onclick="logout()">Sair do Aplicativo</button>
+    </div>
+</div>
+
+<script>
+    let isLogin = true;
+
+    function toggleMode() {
+        isLogin = !isLogin;
+        document.getElementById('name-group').style.display = isLogin ? 'none' : 'block';
+        document.getElementById('title').innerText = isLogin ? 'Kobra AO' : 'Criar Conta';
+        document.getElementById('main-btn').innerText = isLogin ? 'Entrar' : 'Finalizar Cadastro';
+        document.getElementById('alt-btn').innerText = isLogin ? 'Não tem conta? Registe-se' : 'Já tenho conta. Entrar';
+    }
+
+    function handleAuth() {
+        const user = document.getElementById('user').value;
+        const pass = document.getElementById('pass').value;
+        const name = document.getElementById('name').value;
+
+        if(!user || !pass) return alert("Preencha todos os campos!");
+
+        if (isLogin) {
+            // LÓGICA DE LOGIN
+            const savedUser = JSON.parse(localStorage.getItem(user));
+            if (savedUser && savedUser.pass === pass) {
+                showDashboard(savedUser);
+            } else {
+                alert("Dados incorretos ou usuário não existe!");
+            }
+        } else {
+            // LÓGICA DE CADASTRO
+            if(!name) return alert("Digite seu nome!");
+            const userData = { name: name, user: user, pass: pass, balance: "1.500,00" };
+            localStorage.setItem(user, JSON.stringify(userData));
+            alert("Conta criada com sucesso! Faça login agora.");
+            toggleMode();
+        }
+    }
+
+    function showDashboard(data) {
+        document.getElementById('auth-screen').style.display = 'none';
+        document.getElementById('dashboard-screen').style.display = 'block';
+        document.getElementById('user-display').innerText = data.name;
+        document.getElementById('user-balance').innerText = data.balance + " Kz";
+    }
+
+    function logout() {
+        location.reload();
+    }
+</script>
+
+</body>
+</html>
