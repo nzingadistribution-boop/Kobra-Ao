@@ -3,28 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kobra AO | Login</title>
+    <title>Kobra AO | Acesso ao Sistema</title>
     
-    <!-- Google Fonts para um ar mais moderno -->
+    <!-- Importação de fontes e ícones -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
+        /* Variáveis de Cores Profissionais */
         :root {
             --primary: #163172;
-            --primary-hover: #0d1e46;
+            --primary-dark: #0d1e46;
             --accent: #1e61f0;
             --bg-gray: #f8fafc;
             --text-main: #1e293b;
             --text-muted: #64748b;
             --white: #ffffff;
             --border: #e2e8f0;
+            --success: #10b981;
         }
 
+        /* Reset e Base */
         * {
             margin: 0;
             padding: 0;
@@ -35,46 +36,46 @@
         body {
             background-color: var(--bg-gray);
             background-image: radial-gradient(circle at 2px 2px, #e2e8f0 1px, transparent 0);
-            background-size: 40px 40px; /* Sutil padrão de pontos no fundo */
+            background-size: 30px 30px;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            color: var(--text-main);
+            padding: 20px;
         }
 
+        /* Container Principal */
         .container {
             width: 100%;
             max-width: 400px;
             background: var(--white);
             padding: 40px;
             border-radius: 24px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
             border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
         }
 
+        /* Logo e Títulos */
         .logo {
             text-align: center;
-            margin-bottom: 32px;
+            margin-bottom: 30px;
         }
 
-        .logo .icon-wrapper {
-            width: 72px;
-            height: 72px;
+        .icon-wrapper {
+            width: 70px;
+            height: 70px;
             background: linear-gradient(135deg, var(--primary), var(--accent));
             border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 16px;
-            box-shadow: 0 10px 15px -3px rgba(22, 49, 114, 0.3);
-            transform: rotate(-5deg); /* Charme visual */
-        }
-
-        .logo .icon-wrapper i {
+            margin: 0 auto 15px;
             color: white;
-            font-size: 32px;
-            transform: rotate(5deg);
+            font-size: 30px;
+            box-shadow: 0 10px 15px rgba(22, 49, 114, 0.2);
+            transform: rotate(-5deg);
         }
 
         .logo h1 {
@@ -85,11 +86,12 @@
         }
 
         .logo p {
-            margin-top: 6px;
             color: var(--text-muted);
             font-size: 14px;
+            margin-top: 6px;
         }
 
+        /* Formulários */
         .form-group {
             margin-bottom: 20px;
         }
@@ -129,58 +131,67 @@
 
         .input-wrapper input:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 0 4px rgba(30, 97, 240, 0.1);
+            box-shadow: 0 0 0 4px rgba(30, 97, 240, 0.08);
         }
 
+        /* Botões */
         .btn {
             width: 100%;
-            padding: 14px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 12px;
+            padding: 15px;
             background: var(--primary);
             color: white;
+            border: none;
+            border-radius: 12px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.1s active, background 0.2s ease;
+            transition: 0.2s;
+            margin-top: 10px;
         }
 
         .btn:hover {
-            background: var(--primary-hover);
+            background: var(--primary-dark);
+            transform: translateY(-1px);
         }
 
         .btn:active {
             transform: scale(0.98);
         }
 
+        /* Links Extras */
         .extra-links {
-            margin-top: 24px;
+            margin-top: 25px;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+            font-size: 14px;
         }
 
         .extra-links a {
             text-decoration: none;
             color: var(--accent);
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.2s;
+            font-weight: 600;
+            transition: 0.2s;
         }
 
         .extra-links a:hover {
             color: var(--primary);
-            text-decoration: underline;
         }
 
+        /* Footer */
         .footer {
-            margin-top: 32px;
+            margin-top: 35px;
             text-align: center;
             font-size: 12px;
             color: var(--text-muted);
-            font-weight: 400;
+        }
+
+        /* Animação de Transição */
+        .fade-in {
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -191,39 +202,94 @@
         <div class="icon-wrapper">
             <i class="fa-solid fa-wallet"></i>
         </div>
-        <h1>Kobra AO</h1>
-        <p>Gestão financeira inteligente</p>
+        <h1 id="main-title">Kobra AO</h1>
+        <p id="dynamic-subtitle">Gestão financeira inteligente</p>
     </div>
 
-    <form>
-        <div class="form-group">
-            <label for="user">E-mail ou Telefone</label>
-            <div class="input-wrapper">
-                <i class="fa-solid fa-user"></i>
-                <input type="text" id="user" placeholder="exemplo@kobra.ao" required>
+    <!-- TELA DE LOGIN -->
+    <div id="login-section" class="fade-in">
+        <form onsubmit="return false;">
+            <div class="form-group">
+                <label>E-mail ou Telefone</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="login-user" placeholder="Digite seu acesso" required>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="pass">Palavra-passe</label>
-            <div class="input-wrapper">
-                <i class="fa-solid fa-lock"></i>
-                <input type="password" id="pass" placeholder="••••••••" required>
+            <div class="form-group">
+                <label>Palavra-passe</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="login-pass" placeholder="••••••••" required>
+                </div>
             </div>
+
+            <button type="submit" class="btn">Entrar na Conta</button>
+        </form>
+        
+        <div class="extra-links">
+            <a href="javascript:void(0)" onclick="toggleView('register')">Não tem conta? <span>Registe-se</span></a>
         </div>
+    </div>
 
-        <button type="submit" class="btn">Entrar na Conta</button>
-    </form>
+    <!-- TELA DE REGISTRO -->
+    <div id="register-section" class="fade-in" style="display: none;">
+        <form onsubmit="return false;">
+            <div class="form-group">
+                <label>Nome Completo</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-signature"></i>
+                    <input type="text" placeholder="Como devemos lhe chamar?" required>
+                </div>
+            </div>
 
-    <div class="extra-links">
-        <a href="#">Esqueceu a senha?</a>
-        <a href="#" style="color: var(--text-muted)">Não tem conta? <span style="color: var(--accent)">Registe-se</span></a>
+            <div class="form-group">
+                <label>E-mail ou WhatsApp</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="text" placeholder="Para validar sua conta" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Criar Palavra-passe</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <input type="password" placeholder="Mínimo 6 caracteres" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn" style="background: var(--success);">Confirmar Registo</button>
+        </form>
+        
+        <div class="extra-links">
+            <a href="javascript:void(0)" onclick="toggleView('login')">Já tem uma conta? <span>Fazer Login</span></a>
+        </div>
     </div>
 
     <div class="footer">
         &copy; 2026 Kobra AO. Todos os direitos reservados.
     </div>
 </div>
+
+<script>
+    function toggleView(view) {
+        const loginSec = document.getElementById('login-section');
+        const registerSec = document.getElementById('register-section');
+        const subtitle = document.getElementById('dynamic-subtitle');
+
+        if (view === 'register') {
+            loginSec.style.display = 'none';
+            registerSec.style.display = 'block';
+            subtitle.innerText = 'Crie sua conta em poucos segundos';
+        } else {
+            registerSec.style.display = 'none';
+            loginSec.style.display = 'block';
+            subtitle.innerText = 'Gestão financeira inteligente';
+        }
+    }
+</script>
 
 </body>
 </html>
