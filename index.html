@@ -1,18 +1,229 @@
-
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-        <meta name="description" content=""/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title> </title>
-        <link rel="stylesheet" href="styles/style.css" type="text/css"/>
-        <script src = "scripts/script.js"></script>
-        <style>
-        </style>
-    </head>
-    <body>
-        <script>
-        </script>
-    </body>
- </html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kobra AO | Login</title>
+    
+    <!-- Google Fonts para um ar mais moderno -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #163172;
+            --primary-hover: #0d1e46;
+            --accent: #1e61f0;
+            --bg-gray: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-gray);
+            background-image: radial-gradient(circle at 2px 2px, #e2e8f0 1px, transparent 0);
+            background-size: 40px 40px; /* Sutil padrão de pontos no fundo */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-main);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--border);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .logo .icon-wrapper {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            box-shadow: 0 10px 15px -3px rgba(22, 49, 114, 0.3);
+            transform: rotate(-5deg); /* Charme visual */
+        }
+
+        .logo .icon-wrapper i {
+            color: white;
+            font-size: 32px;
+            transform: rotate(5deg);
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo p {
+            margin-top: 6px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            display: block;
+            margin-bottom: 8px;
+            margin-left: 4px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 16px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 14px 14px 14px 45px;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            background: var(--white);
+            font-size: 15px;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        .input-wrapper input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(30, 97, 240, 0.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 12px;
+            background: var(--primary);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.1s active, background 0.2s ease;
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .extra-links {
+            margin-top: 24px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .extra-links a {
+            text-decoration: none;
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .extra-links a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .footer {
+            margin-top: 32px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo">
+        <div class="icon-wrapper">
+            <i class="fa-solid fa-wallet"></i>
+        </div>
+        <h1>Kobra AO</h1>
+        <p>Gestão financeira inteligente</p>
+    </div>
+
+    <form>
+        <div class="form-group">
+            <label for="user">E-mail ou Telefone</label>
+            <div class="input-wrapper">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="user" placeholder="exemplo@kobra.ao" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="pass">Palavra-passe</label>
+            <div class="input-wrapper">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="pass" placeholder="••••••••" required>
+            </div>
+        </div>
+
+        <button type="submit" class="btn">Entrar na Conta</button>
+    </form>
+
+    <div class="extra-links">
+        <a href="#">Esqueceu a senha?</a>
+        <a href="#" style="color: var(--text-muted)">Não tem conta? <span style="color: var(--accent)">Registe-se</span></a>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 Kobra AO. Todos os direitos reservados.
+    </div>
+</div>
+
+</body>
+</html>
